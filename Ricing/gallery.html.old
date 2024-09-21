@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ricing</title>
+  <link rel="stylesheet" href="stylegallery.css">
+</head>
+<body>
+  <h1>Linux Ricing</h1>
+
+  <div class="gallery">
+    <div class="thumbnails">
+      <img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032140_hyprshot.png" alt="Image 1" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032140_hyprshot.png')">
+      <img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032414_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032414_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032007_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032007_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031939_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031939_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032357_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032357_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031801_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031801_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031615_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-031615_hyprshot.png')">
+	<img src="https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032606_hyprshot.png" alt="Image 2" onclick="openImage('https://raw.githubusercontent.com/danihek/dotfiles/main/assests/2024-01-10-032606_hyprshot.png')">      
+    </div>
+
+    <div class="modal" id="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img src="" alt="Modal Image" id="modalImage">
+    </div>
+  </div>
+
+  <script>
+    function openImage(imagePath) {
+      document.getElementById('modal').style.display = 'block';
+      document.getElementById('modalImage').src = imagePath;
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

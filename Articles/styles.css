@@ -1,0 +1,46 @@
+body {
+    font-family: 'JetbrainsMono Nerd Font', monospace;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .terminal {
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .terminal p {
+    margin-bottom: 10px;
+  }
+  
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .article-table th, .article-table td {
+    border: 1px solid #fff;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .article-table th {
+    background-color: #000000; /* Blue color for headers */
+    color: #00ff00;
+  }
+  
+  
+  .article-table a {
+    text-decoration: none;
+    color: #00ff00; /* Green color for links */
+  }
+  
+  .article-table a:hover {
+    text-decoration: underline;
+    color: #6ff06d; /* Light green color on hover */
+  }
+  

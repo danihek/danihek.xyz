@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <title>Linux Ricing Gallery</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #00ff00;
+    }
+
+    #gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    @media screen and (min-width: 600px) {
+      .image-container {
+      margin: 10px;
+      overflow: hidden;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      width: calc(45.0% - 20px);
+      }  
+    }
+    @media screen and (max-width: 601px) {
+      .image-container {
+      margin: 10px;
+      overflow: hidden;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      }  
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="mySidebar" class="sidebar">
+    <a href="https://danihek.xyz">Home</a>
+    <a href="https://notes.danihek.xyz">Notes</a>
+    <a href="https://danihek.xyz/Ricing/gallery.html">Ricing Gallery</a>
+    <a href="https://danihek.xyz/Articles/index.html">Articles</a>
+    <a href="https://danihek.xyz/Contact/index.html">Contact</a>
+  </div>
+  <h1>Linux Ricing Gallery</h1>
+  <div id="gallery">
+  </div>
+</body>
+<script>
+  const galleryContainer = document.getElementById('gallery');
+  let imageFilenames;
+  
+  fetch('images.json')
+  .then(response => response.json())
+  .then(data => {
+    imageFilenames = data.filenames.map(filename => filename.url);
+    console.log(imageFilenames);
+
+    imageFilenames.forEach((filename, index) => {
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('image-container');
+
+    const imgElement = document.createElement('img');
+    imgElement.src = `${filename}`;
+    imgElement.alt = `Linux Ricing Image ${index + 1}`;
+
+    imageContainer.appendChild(imgElement);
+    galleryContainer.appendChild(imageContainer);
+    });
+  })
+  .catch(error => console.error('Error fetching images.json:', error));
+  
+</script>
+</html>

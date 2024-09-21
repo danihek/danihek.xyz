@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#article-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#article-title {
+  color: #333;
+}
+
+#article-content {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+/* Reset some default styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and font family */
+body {
+    background-color: #f8f8f8;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Set a max-width for better readability */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style headings */
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+/* Style paragraphs */
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Style code blocks */
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+/* Style links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add more styles as needed */
+
+
