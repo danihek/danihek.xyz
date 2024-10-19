@@ -1,0 +1,4 @@
+# Welcome kind stranger! You just encountered MAJESTY of this domain. Piece to FOSS!
+
+User-agent: *
+Disallow: /
