@@ -1,22 +1,23 @@
 :root {
-  --font-size-medium: medium;
-  --font-family-main: 'Courier New', Courier, monospace;
-
-  --color-white: #ffffff;
-  --color-black: #000000;
+  --color-white: #faf8f8;
+  --color-black: #0a0908;
   --color-green: #00ff00;
   --color-red: #b5223b;
 
-  --font-size-h1: 40px;
-  --font-size-h1: 30px;
-  --font-size-p: 20px;
+  --accent-1-dark-mode #00ff00;
+  --accent-2-dark-mode #b5223b;
+
+  --accent-1-light-mode #faf8f8;
+  --accent-2-light-mode #15141A
+
+  --font-size-h1: 21px;
+  --font-size-p: 16;
   --line-height-p: 1.1;
-  --font-size-footer: 14px;
   --sidebar-padding: 8px;
-  --sidebar-hover-padding: 20px;
+  --sidebar-hover-padding: 16px;
   --sidebar-font-size: 18px;
-  --transition-duration: 0.3s;
-  --transition-hover-duration: 0.5s;
+ <!-- --transition-duration: 0.3s; --!>
+  --transition-hover-duration: 0.4s;
   --margin-top-footer: 50px;
   --max-width-content: 800px;
   --margin-zero: 0;
@@ -26,9 +27,9 @@
 }
 
 body {
-  font-size: var(--font-size-medium);
+  font-family: sans-serif;
+  font-size: 16px;
   align-items: center;
-  font-family: var(--font-family-main);
   color: var(--color-white);
   margin: var(--margin-zero);
   padding: var(--padding-body);
@@ -81,14 +82,6 @@ a:hover {
   color: var(--color-red);
 }
 
-.footer {
-  padding: 10px;
-  position:absolute;
-  text-align: center;
-  margin-top: var(--margin-top-footer);
-  font-size: var(--font-size-footer);
-}
-
 .output {
   color: var(--color-white);
 }
@@ -107,12 +100,13 @@ a:hover {
 }
 
 @media screen and (min-width: 500px) {
+ <!-- (unnecessary)ANIMATIONS --!>
   .sidebar a:hover {
-    text-decoration: underline;
-    padding: var(--sidebar-padding);
-    padding: var(--sidebar-hover-padding);
-    transition: var(--transition-hover-duration);
-    display: inline-table;
+ <!--  text-decoration: underline; --!>
+ <!--  padding: var(--sidebar-padding); --!>
+ <!--  padding: var(--sidebar-hover-padding); --!>
+ <!--  transition: var(--transition-hover-duration); --!>
+ <!--  display: inline-table; --!>
   }
   .sidebar a {
     padding: var(--sidebar-padding);
@@ -124,12 +118,13 @@ a:hover {
 }
 
 @media screen and (max-width: 500px) {
+ <!-- (unnecessary)ANIMATIONS --!>
   .sidebar a:hover {
-    text-decoration: underline;
-    padding: var(--sidebar-padding);
-    padding: var(--sidebar-hover-padding);
-    transition: var(--transition-hover-duration);
-    display: block;
+ <!--  text-decoration: underline; --!>
+ <!--  padding: var(--sidebar-padding); --!>
+ <!--  padding: var(--sidebar-hover-padding); --!>
+ <!--  transition: var(--transition-hover-duration); --!>
+ <!--  display: block; --!>
   }
   .sidebar a {
     padding: var(--sidebar-padding);
