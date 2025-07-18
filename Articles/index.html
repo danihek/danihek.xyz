@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>danihek's Articles</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="https://raw.githubusercontent.com/danihek/danihek.xyz/refs/heads/main/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../style.css">
-
-    <title>dh's Articles</title>
+    <!-- Updated path to be root-relative for consistency -->
+    <link rel="stylesheet" href="/style.css"> 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <div id="mySidebar" class="sidebar">
-    <a href="https://danihek.xyz">Home</a>
+
+  <nav class="sidebar">
+    <!-- Updated paths to be root-relative -->
+    <a href="/">Home</a>
+    <a href="/Projects/">Projects</a>
     <a href="https://notes.danihek.xyz">Notes</a>
-    <a href="https://danihek.xyz/Ricing/gallery.html">Ricing Gallery</a>
-    <a href="https://danihek.xyz/Articles/index.html">Articles</a>
-    <a href="https://danihek.xyz/Contact/index.html">Contact</a>
-  </div>
-<h1 style="text-align: center;">Articles</h1> 
+    <a href="/Ricing/gallery.html">Ricing</a>
+    <a href="/Articles/">Articles</a>
+    <a href="/Contact/">Contact</a>
+  </nav>
+  
+  <main class="content">
+    <h1><span class="jp-title">記事</span> / Articles</h1>
+    <p>Writings, guides, and documentation on things I'm working on or find interesting.</p>
+
+    <!-- We replace the table with a more stylish article list -->
+    <div class="article-list">
+      
+      <!-- Each article is now a clickable card -->
+      <a href="/Articles/articles/t430/" class="article-card-link">
+        <article class="article-card">
+          <div class="article-image-container">
+            <img src="https://preview.redd.it/my-t430-thinkstagrampics-v0-9855bgmn2n2e1.jpg?width=1080&crop=smart&auto=webp&s=e13ac7d25744e6e79101c244a5624a0925f545b6" alt="T430 Mods">
+            <div class="article-image-placeholder">
+              <span class="jp-title">記事</span>
+            </div>
+          </div>
+
+          <!-- Article text content -->
+          <div class="article-content">
+            <h3 class="article-title">My T430 Mods!</h3>
+            <p class="article-description">A deep dive into modernizing the classic ThinkPad T430.</p>
+            <time class="article-date" datetime="2024-09-20">September 20, 2024</time>
+          </div>
+        </article>
+      </a>
+
+      <!-- Add new articles here in the future -->
+      <!-- 
+      <a href="#" class="article-card-link">
+        <article class="article-card">
+          <div class="article-image-container">
+            <div class="article-image-placeholder">
+              <span class="jp-title">記事</span>
+            </div>
+          </div>
+          <div class="article-content">
+            <h3 class="article-title">Future Article Title</h3>
+            <p class="article-description">A brief and exciting summary of what this article is about.</p>
+            <time class="article-date" datetime="YYYY-MM-DD">Month DD, YYYY</time>
+          </div>
+        </article>
+      </a> 
+      -->
+
     </div>
-  <div class="articletableinfo">
-    <table class="article-table">
-      <tr>
-          <th>no.</th>
-          <th>Title</th>
-	  <th>date</th>
-      </tr>
-      <tr>
-          <td>1</td>
-          <td><a href="articles/t430/index.html">My T430 Mods!</a></td>
-	  <td><a>20.09.2024</a></td>
-    </tr>
-    </table>
-  </div>
+  </main>
+
 </body>
+</html>

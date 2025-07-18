@@ -1,0 +1,91 @@
+<!-- template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>danihek's projects</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <nav class="sidebar">
+    <a href="/">Home</a>
+    <a href="/Projects/">Projects</a>
+    <a href="https://notes.danihek.xyz">Notes</a>
+    <a href="/Ricing/gallery.html">Ricing</a>
+    <a href="/Articles/">Articles</a>
+    <a href="/Contact/">Contact</a>
+  </nav>
+
+  <main class="content">
+    <h1><span class="jp-title">プロジェクト</span> / Projects</h1>
+    <p>A curated list of my projects, generated automatically from GitHub.</p>
+    
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card card {{ project.crop_class }} {% if project.is_pinned %}is-pinned{% endif %}">
+
+        {% if project.readme_image_url %}
+        <div class="card-image-container">
+          <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ project.readme_image_url }}" alt="Project screenshot for {{ project.name }}" loading="lazy">
+          </a>
+        </div>
+        {% else %}
+        <!-- ✨ NEW: Fallback placeholder for projects without an image -->
+        <div class="card-image-placeholder">
+          <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+            <span>{{ project.name }}</span>
+          </a>
+        </div>
+        {% endif %}
+
+        <div class="card-body">
+            <div class="card-header">
+              <h3>
+                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
+                {% if project.is_pinned %}<span class="pin-icon" title="Pinned Project">📌</span>{% endif %}
+              </h3>
+              <div class="stats-prominent" title="{{ project.stars }} stars">
+                ★ {{ project.stars }}
+              </div>
+            </div>
+
+            <p class="project-description">{{ project.description }}</p>
+
+            {% if project.topics %}
+            <div class="topics-container">
+              {% for topic in project.topics %}<span class="topic-tag">{{ topic }}</span>{% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if project.chart_path %}
+        <div class="card-visuals">
+            <img src="{{ project.chart_path | replace('Projects/', '') }}" alt="Language distribution for {{ project.name }}">
+        </div>
+        {% endif %}
+        
+        <div class="card-footer">
+          <!-- ✨ NEW: Added more descriptive titles and a Live Demo button -->
+          <div class="footer-stats">
+            <span title="{{ project.forks }} forks">⑂ {{ project.forks }}</span>
+            <span title="{{ project.open_issues }} open issues">! {{ project.open_issues }}</span>
+            <span title="Last updated: {{ project.last_updated }}">◷ {{ project.last_updated }}</span>
+          </div>
+          {% if project.demo_url %}
+          <a href="{{ project.demo_url }}" class="btn-demo" target="_blank" rel="noopener noreferrer">🚀 Live Demo</a>
+          {% endif %}
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+
+    <footer class="page-footer">
+        Page generated on: {{ generation_time }}
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,91 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>danihek's Ricing Gallery</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style.css">
-  <title>Linux Ricing Gallery</title>
-  <style>
-    body {
-      text-align: center;
-    }
+  <meta name="description" content="A collection of danihek's desktop and environment setups.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    h1 {
-      color: var(--color-black);
-    }
-
-    #gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-    @media screen and (min-width: 600px) {
-      .image-container {
-      margin: 10px;
-      overflow: hidden;
-      border: 2px solid var(--background-links);
-      border-radius: 10px;
-      box-shadow: 0 0 10px var(--color-links);
-      width: calc(45.0% - 20px);
-      }  
-    }
-    @media screen and (max-width: 601px) {
-      .image-container {
-      margin: 10px;
-      overflow: hidden;
-      border: 2px solid var(--background-links);
-      border-radius: 10px;
-      box-shadow: 0 0 10px var(--color-links);
-      }  
-    }
-
-    .image-container img {
-      width: 100%;
-      height: auto;
-      transition: transform 0.3s;
-    }
-
-    .image-container:hover img {
-      transform: scale(1.1);
-    }
-  </style>
+  <!-- Add basicLightbox for a sleek, dependency-free modal -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
 </head>
 <body>
-  <div id="mySidebar" class="sidebar">
-    <a href="https://danihek.xyz">Home</a>
+
+  <nav class="sidebar">
+    <a href="/">Home</a>
+    <a href="/Projects/">Projects</a>
     <a href="https://notes.danihek.xyz">Notes</a>
-    <a href="https://danihek.xyz/Ricing/gallery.html">Ricing Gallery</a>
-    <a href="https://danihek.xyz/Articles/index.html">Articles</a>
-    <a href="https://danihek.xyz/Contact/index.html">Contact</a>
-  </div>
-  <h1>Linux Ricing Gallery</h1>
-  <div id="gallery">
-  </div>
-</body>
+    <a href="/Ricing/gallery.html">Ricing</a>
+    <a href="/Articles/">Articles</a>
+    <a href="/Contact/">Contact</a>
+  </nav>
+
+  <main class="content">
+    <h1><span class="jp-title">デスクトップ</span> / Ricing Gallery</h1>
+    <!-- More engaging intro text -->
+    <p>Welcome to my (unix/tech) porn gallery. Hover for details and click to enlarge.</p>
+    
+    <div class="gallery-grid" id="gallery">
+      <!-- Skeleton loaders will be generated here by JS -->
+    </div>
+  </main>
+
+<script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
 <script>
   const galleryContainer = document.getElementById('gallery');
-  let imageFilenames;
+
+  // --- 1. Show Skeleton Loaders for Better Perceived Performance ---
+  const createSkeletonCard = () => {
+    const skeleton = document.createElement('div');
+    skeleton.classList.add('gallery-item-skeleton');
+    galleryContainer.appendChild(skeleton);
+  };
   
+  // Show 8 skeleton cards initially
+  for (let i = 0; i < 8; i++) {
+    createSkeletonCard();
+  }
+
+  // --- 2. Fetch and Render the Real Gallery Data ---
   fetch('images.json')
-  .then(response => response.json())
-  .then(data => {
-    imageFilenames = data.filenames.map(filename => filename.url);
-    console.log(imageFilenames);
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      const galleryItems = data.gallery; // Use the new "gallery" key
 
-    imageFilenames.forEach((filename, index) => {
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('image-container');
+      // Clear the skeleton loaders
+      galleryContainer.innerHTML = ''; 
 
-    const imgElement = document.createElement('img');
-    imgElement.src = `${filename}`;
-    imgElement.alt = `Linux Ricing Image ${index + 1}`;
+      if (!galleryItems || galleryItems.length === 0) {
+        galleryContainer.innerHTML = '<p>No gallery items found.</p>';
+        return;
+      }
 
-    imageContainer.appendChild(imgElement);
-    galleryContainer.appendChild(imageContainer);
+      galleryItems.forEach(item => {
+        const galleryItem = document.createElement('div');
+        galleryItem.classList.add('gallery-item');
+        
+        // Use the thumbnail for the grid, full image for the lightbox
+        const imgSrc = item.thumbnail_url || item.url;
+        
+        const imgElement = document.createElement('img');
+        imgElement.src = imgSrc;
+        imgElement.alt = item.title || 'Ricing gallery image';
+        imgElement.loading = 'lazy';
+
+        // --- Create the Hover Overlay ---
+        const infoOverlay = document.createElement('div');
+        infoOverlay.classList.add('info-overlay');
+        infoOverlay.innerHTML = `
+          <h4 class="info-title">${item.title}</h4>
+          <p class="info-date">${item.date}</p>
+        `;
+
+        galleryItem.appendChild(imgElement);
+        galleryItem.appendChild(infoOverlay);
+        galleryContainer.appendChild(galleryItem);
+
+        // --- 3. Add Lightbox Functionality ---
+        galleryItem.addEventListener('click', () => {
+          // Create the content for the lightbox with title and description
+          const lightboxContent = `
+            <div class="lightbox-content">
+              <img src="${item.url}" alt="${item.title}">
+              <div class="lightbox-caption">
+                <h3>${item.title}</h3>
+                <p>${item.description || ''}</p>
+              </div>
+            </div>
+          `;
+          const instance = basicLightbox.create(lightboxContent);
+          instance.show();
+        });
+      });
+    })
+    .catch(error => {
+      // A more styled error message
+      galleryContainer.innerHTML = `
+        <div class="gallery-error">
+          <h3><span class="jp-title">エラー</span> / Error</h3>
+          <p>Could not load the gallery. Please check the console or try again later.</p>
+        </div>`;
+      console.error('Error fetching or parsing images.json:', error);
     });
-  })
-  .catch(error => console.error('Error fetching images.json:', error));
-  
 </script>
+</body>
 </html>

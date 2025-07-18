@@ -1,119 +1,120 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>My T430 Mods!</title>
+    <title>My T430 Mods!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A deep dive into upgrading and modernizing the classic ThinkPad T430 laptop.">
+    <meta name="author" content="danihek">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="dh's Articles.">
-  <meta name="keywords" content="Nix, Unix, Linux, Programming, Thinkpads, C, C++, Bash, Wayland, wlroots, HellWM">
-  <meta name="author" content="danihek">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
 
-  <link rel="stylesheet" href="../../../style.css">
-  <link rel="icon" href="https://raw.githubusercontent.com/danihek/danihek.xyz/refs/heads/main/favicon.ico" type="image/x-icon">
+    <nav class="sidebar">
+        <a href="/">Home</a>
+        <a href="/Projects/">Projects</a>
+        <a href="https://notes.danihek.xyz">Notes</a>
+        <a href="/Ricing/gallery.html">Ricing</a>
+        <a href="/Articles/">Articles</a>
+        <a href="/Contact/">Contact</a>
+    </nav>
 
-   <head>
-  <div class="articlebody">
-  <div id="mySidebar" class="sidebar">
-    <a href="https://danihek.xyz">Home</a>
-    <a href="https://notes.danihek.xyz">Notes</a>
-    <a href="https://danihek.xyz/Ricing/gallery.html">Ricing Gallery</a>
-    <a href="https://danihek.xyz/Articles/index.html">Articles</a>
-    <a href="https://danihek.xyz/Contact/index.html">Contact</a>
-  </div>
-    <h1 id="my-t430-mods">My T430 Upgrades</h1>
-    <h2 id="introduction">Introduction</h2>
-    <p>ThinkPad T430 is an amazing laptop known for it&#39;s durability, upgradability and compatibility with Linux. I&#39;ll discuss here upgrades which I have done.</p>
-  </div>
-  </head>
-  <body>
-    <div class="articlebody">
-    <h2 id="usb-c-charging-port">USB-C Charging Port</h2>
-    <p>I wanted easier way to charge my laptop, and now I only have to take only one charger for all my devices.</p>
-    <p>Required componets:<p>
-    <ul>USB-C PD 20V 5A</ul>
-    <ul>Resistor (with resistance 10KΩ in case of T430) </ul>
-    <ul>3D print of small case for usb-c pcb (model down bellow)</ul>
-    <h3 id="usb-c-pd-20v-5a">USB-C PD 20V 5A</h3>
-    <ul>
-    <li><a href="https://www.amazon.com/dp/B08NFL8RQC?social_share=cm_sw_r_mwn_dp_HW3RAXBPBGEDA9Y1BE5X&language=en_US">amazon</a>
-    </li>
-    <li><a href="https://kamami.pl/wyzwalacze-usb-pd/584723-wyzwalacz-pd-usb-typu-c-20v-5a-bez-zlacza-5906623461646.html">kamami</a> (only in Poland)
-    </li>
-    </ul>
-    <h3 id="power">Power</h3>
-    <p>Based on this table from <a href="https://www.thinkwiki.org/wiki/Power_Connector#Signal_Pin">wiki</a>, we need to choose resistor with resistance depends on device power rate. In case of T430 we have 65W, so 10kΩ resistor.</p>
-    <table>
-    <thead>
-    <tr>
-    <th align="center">power rating</th>
-    <th align="center">resistance</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-    <td align="center">65 W</td>
-    <td align="center">10 kΩ</td>
-    </tr>
-    <tr>
-    <td align="center">90 W</td>
-    <td align="center">not connected</td>
-    </tr>
-    <tr>
-    <td align="center">135 W</td>
-    <td align="center">0 Ω</td>
-    </tr>
-    <tr>
-    <td align="center">170 W</td>
-    <td align="center">1.5 kΩ</td>
-    </tr>
-    </tbody></table>
-    <h3 id="wiring">Wiring</h3>
-    <p>Black wires to <em><strong>-</strong></em></p>
-    <p>Red wires to <em><strong>+</strong></em></p>
-    <p>Blue/Green like wire to ground through 10kΩ resistor.</p>
-    <p><img src="wiring.png" alt="wiring"></p>
-    <p>Now we have to put it in some sort of a case. I 3D printed <a href="https://www.thingiverse.com/thing:4363602">this</a>, thanks to this guy I didn&#39;t had to create my own model, and usb-c pcb fits perfectly inside.</p>
-    <p>One issue you can encounter is length of a usb-c can intersect with fan... I solved this problem by rubbing the corner of the PCB with a nail file.</p>
-    <p>Final result looks like this:
-    <p><img src="usbc.png" alt="usbc" width="500"></p>
-    <p><img src="usbc_charging.jpg" alt="usbc_charging" width="500"></p>
-    <h2 id="engrave-logo-on-lid">Engrave Logo on Lid</h2>
-    <p>It&#39;s kinda like stickers, but better, you can engrave anything you want with high detail. There is one con... this mod is permanent, so if you change your mind you are screwed.</p>
-    <p>Anyway process is simple, but not everyone have access to tools that I used (laser cutter), so if you do then let&#39;s start!</p>
-    <ol>
-    <li>Choose or draw your preferred image</li>
-    <li>Convert it to svg, using programs such as Inkscape</li>
-    <li>Upload it to your laser and watch it engrave realtime:)</li>
-    </ol>
-    <p><em><strong>Before trying it on your machine I recommend to test laser on similar surface to adjust it&#39;s power properly and not damage laptop!</strong></em></p>
-    <p>Results:</p>
-    <p><img src="engravelidfromlaser.gif" alt="engravelidfromlaser" width="500"></p>
-    <p><img src="engraveLID.png" alt="engraveLID" width="500"></p>
+    <!-- Use a dedicated <article> tag for semantics -->
+    <article class="article-body">
 
-    <h2 id="backlit-keyboard">Backlit Keyboard</h2>
-    <p>You can also replace keyboard for the one with the backlight!</p>
-    <p>I&#39;ve also decided to buy US-JP layout, because for me it looks really cool. I catched this one on ebay:</p>
-    <p><img src="backlitjpkeyboard.jpg" alt="backlitjpkeyboard" width="500"></p>
+        <!-- A stylish, centered header for the article -->
+        <header class="article-header">
+            <h1>My T430 Upgrades</h1>
+            <p>A guide to modernizing a classic Thinkpad.</p>
+            <div class="article-meta">
+                <time datetime="2024-09-20">September 20, 2024</time>
+                <span>•</span>
+                <span>Est. 5 min read</span>
+            </div>
+        </header>
 
-    <h2 id="slice-battery">Slice Battery</h2>
-    <p>In terms of battery life there is no better choice than a slice battery! It improves battery life DRASTICALLY.</p>
-    <p>I went from around 5-6h to 14-16h (for my usecase: neovim, browser - nothing fancy):</p>
-    <ul>My regular battery has 44.66Wh (93% of 47.52Wh)</ul>
-    <ul>My slice   battery has 80.09Wh (85% of 93.25Wh)</ul>
-    <ul>Combined my laptop has 124.75Wh</ul>
-    
-    <p>Slice Battery:</p>
-    <p><img src="slidebatteryREGULARBATIMAGE.jpg" alt="slidebatteryREGULARBATIMAGE" height="500"></p>
-    
-    <p>Regular&Slice Battery Info</p>
-    <div>
-      <img src="slidebatteryREGULARBAT0.jpg" alt="slidebatteryREGULARBAT0" height="500">
-      <img src="slidebatteryREGULARBAT1.jpg" alt="slidebatteryREGULARBAT1" height="500">
-    </div>
+        <!-- Main content with a readable, centered width -->
+        <div class="article-content">
 
-    <p>Combined:</p>
-    <p><img src="slidebatteryREGULARBATCOMBINED.jpg" alt="slidebatteryREGULARBATCOMBINED" height="500"></p>
+            <h2>Introduction</h2>
+            <p>The ThinkPad T430 is an amazing laptop known for its durability, upgradability, and compatibility with Linux. In this article, I'll discuss the upgrades I have done to bring it into the modern era.</p>
 
-    <p>Thanks for reading, don't be scared to mess with your thinkpad ;)</p>
-  </div>
-  </body>
+            <h2>USB-C Charging Port</h2>
+            <p>I wanted an easier way to charge my laptop, so now I only have to carry one charger for all my devices. This mod is surprisingly straightforward.</p>
+            
+            <h3>Required Components:</h3>
+            <ul>
+                <li>USB-C PD Trigger Board (set to 20V 5A)</li>
+                <li>Resistor (10kΩ for the T430's 65W requirement)</li>
+                <li>A 3D printed case for the PCB (model linked below)</li>
+            </ul>
+
+            <h3>Power Signaling</h3>
+            <p>Based on the table from the <a href="https://www.thinkwiki.org/wiki/Power_Connector#Signal_Pin">ThinkWiki</a>, we need to choose a resistor that signals the correct power rating to the laptop. For the 65W T430, this is 10kΩ.</p>
+            
+            <!-- The existing table will be centered and styled by the new CSS -->
+            <table class="styled-table">
+                <thead>
+                    <tr><th>Power Rating</th><th>Resistance</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>65 W</td><td>10 kΩ</td></tr>
+                    <tr><td>90 W</td><td>Not Connected</td></tr>
+                    <tr><td>135 W</td><td>0 Ω</td></tr>
+                    <tr><td>170 W</td><td>1.5 kΩ</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Wiring & Assembly</h3>
+            <p>The wiring is simple: power to power, ground to ground, and the signal pin connected to ground through the 10kΩ resistor. I used a <a href="https://www.thingiverse.com/thing:4363602">3D-printed case</a> which fits the PCB perfectly.</p>
+            
+            <!-- All images now have a consistent, styled look -->
+            <img src="wiring.png" alt="Wiring diagram for the USB-C mod">
+            <p>The final result is clean and functional. One potential issue is the length of the PCB interfering with the fan; I solved this by carefully filing down a corner of the board.</p>
+            
+            <!-- The image gallery creates a clean, side-by-side view -->
+            <div class="image-gallery">
+                <img src="usbc.png" alt="The final USB-C port installed in the T430">
+                <img src="usbc_charging.jpg" alt="The T430 charging via USB-C">
+            </div>
+
+            <h2>Engraved Lid</h2>
+            <p>A permanent and personal alternative to stickers. Using a laser cutter, you can engrave a high-detail design onto the lid. <strong>Always test your laser's power settings on a similar surface (e.g. other thinkpad) before engraving your laptop.</strong></p>
+            <div class="image-gallery">
+                <img src="engravelidfromlaser.gif" alt="Laser engraving the laptop lid in real time">
+                <img src="engraveLID.png" alt="Final result of the clean, engraved lid">
+            </div>
+
+            <h2>Backlit Japanese Keyboard</h2>
+            <p>A simple but effective upgrade for both aesthetics and late-night functionality. I found this US-JP layout keyboard with backlighting on eBay.</p>
+            <img src="backlitjpkeyboard.jpg" alt="The backlit Japanese layout keyboard">
+
+            <h2>Slice Battery</h2>
+            <p>For incredible battery life, the slice battery is the ultimate upgrade. My total capacity is now ~125Wh, giving me 14-16 hours of my typical workflow.</p>
+            <ul>
+                <li>Regular Battery: ~45Wh</li>
+                <li>Slice Battery: ~80Wh</li>
+                <li><strong>Total Combined: ~125Wh</strong></li>
+            </ul>
+            <p>Here you can see the battery information and the final look with the slice battery attached.</p>
+            <div class="image-gallery">
+                <img src="slidebatteryREGULARBAT0.jpg" alt="UPower info for the regular battery">
+                <img src="slidebatteryREGULARBAT1.jpg" alt="UPower info for the slice battery">
+            </div>
+            <img src="slidebatteryREGULARBATCOMBINED.jpg" alt="The T430 with both the regular and slice batteries attached">
+
+        </div>
+
+        <!-- A stylish footer to conclude the article -->
+        <footer class="article-footer">
+            <div class="article-separator">❖</div>
+            <p>Thanks for reading! Don't be afraid to experiment with your ThinkPad (and put LINUX on it LMAO);</p>
+            <a href="/Articles/" class="back-to-articles">← Back to All Articles</a>
+        </footer>
+
+    </article>
+
+</body>
 </html>

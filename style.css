@@ -1,258 +1,885 @@
+/* /style.css - The Single Source of Truth for danihek.xyz */
+
+/* ==========================================================================
+   1. Design System & Variables
+   ========================================================================== */
 :root {
-  --color-white: #faf8f8;
-  --color-black: #0a0908;
-  --color-links: #284b63;
-  --color-hover: rgba(40, 75, 99, 0.4);
-  --background-links: rgba(176, 187, 207, 0.4);
+  /* -- Colors: Retro Japanese Theme -- */
+  --color-bg: #EAE3D9;          /* Off-white, like old paper */
+  --color-text: #2C2C2C;       /* Dark gray, not pure black */
+  --color-border: #4A4A4A;     /* A solid, dark border color */
+  --color-accent: #B83B5E;      /* Muted, dusty red for titles/links */
+  --color-accent-hover: #9D2B4A; /* Darker accent for hover */
+  --color-card-bg: #F8F5F1;     /* Lighter background for cards/inputs */
+  --color-subtle-text: #666;    /* For footnotes, dates, etc. */
 
-  --darkreader-bg--color-white: #080000;
-  --darkreader-text--color-white: #efede8;
-  --darkreader-text--color-black: #edeae5;
-  --darkreader-text--color-links: #00ff00;
-  --darkreader-text--color-hover: #e94562;
-  --darkreader-bg--background-links: rgba(126, 237, 247, 0.0);
+  /* -- Typography -- */
+  --font-body: 'monospace', 'Courier New', Courier, sans-serif;
+  --font-heading: 'Georgia', 'Times New Roman', Times, serif;
 
-  --font-size-h1: 21px;
-  --font-size-p: 16;
-
-  --line-height-p: 1.5;
-
-  --sidebar-padding: 8px;
-  --sidebar-hover-padding: 16px;
-  --sidebar-font-size: 18px;
-
- <!-- --transition-duration: 0.3s; --!>
-  --transition-hover-duration: 0.4s;
-
-  --max-width-content: 800px;
-  --margin-zero: 0;
-  --padding-body: 2px 2px 2px 2px;
-  --border-radius-img: 50%;
-  --width-img: 70px;
+  /* -- Layout -- */
+  --content-width: 1200;
+  --border-radius: 3px;
+  --spacing-unit: 20px;
 }
 
+/* ==========================================================================
+   2. Global & Base Styles
+   ========================================================================== */
 body {
-  font-family: monospace,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
   font-size: 16px;
-  align-items: center;
-  color: var(--color-black);
-  margin: var(--margin-zero);
-  position: relative;
-  background-color: var(--color-white);
-  text-align: center;
 }
 
-.content {
-  align-items: center;
-  max-width: var(--max-width-content);
-  margin: var(--margin-zero) auto;
+main.content,
+div.content {
+  max-width: var(--content-width); /* ...and change the variable */
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 2);
 }
 
-h1, h2, h3 {
- color: var(--color-black);
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
 }
 
-h2.content {
-  font-size: var(--font-size-h2);
-  text-align: center;
-}
+h1 { font-size: 2.2em; border-bottom: 2px solid var(--color-border); padding-bottom: 10px; text-align: center; }
+h2 { font-size: 1.8em; border-bottom: 1px solid #d4cbbd; padding-bottom: 5px;}
+h3 { font-size: 1.4em; color: var(--color-accent); }
 
-h1.content {
-  font-size: var(--font-size-h1);
-  text-align: center;
-}
-
-h1 img {
-  width: var(--width-img);
-  height: auto;
-  border-radius: var(--border-radius-img);
-  align-items: center;
-  vertical-align: middle;
-}
-
-.content p {
-  font-size: var(--font-size-p);
-  line-height: var(--line-height-p);
-}
-
-.content ul li {
-  list-style: none;
-  position: relative;
-  padding: 2px;
-  padding-right: 40px;
-}
+p { margin-bottom: 1em; }
+ul, ol { padding-left: 20px; }
 
 a {
-  background-color: var(--background-links);
-  border-radius: 5px;
-  color: var(--color-links);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color .2s;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  background-color: var(--background-links);
-  border-radius: 5px;
-  color: var(--color-hover);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color .2s;
+  color: var(--color-accent-hover);
 }
 
-.output {
-  color: var(--color-white);
-}
-
-.gif-image {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.sidebar {
-  padding: var(--sidebar-padding);
-  text-align: center;
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
   display: block;
-  color: var(--color-links);
+  margin: 15px auto; /* Center images by default */
 }
 
-@media screen and (min-width: 500px) {
- <!-- (unnecessary)ANIMATIONS --!>
-  .sidebar a:hover {
- <!--  text-decoration: underline; --!>
- <!--  padding: var(--sidebar-padding); --!>
- <!--  padding: var(--sidebar-hover-padding); --!>
- <!--  transition: var(--transition-hover-duration); --!>
- <!--  display: inline-table; --!>
-  }
-  .sidebar a {
-    padding: var(--sidebar-padding);
-    text-decoration: none;
-    font-size: var(--sidebar-font-size);
-    transition: var(--transition-duration);
-    display: inline-table;
-  }
+/* For homepage pfp */
+h1 img {
+    width: 70px;
+    height: auto;
+    border-radius: 50%;
+    vertical-align: middle;
+    display: inline-block; /* Override default block */
+    margin: 0 10px 0 0;
 }
 
-@media screen and (max-width: 500px) {
- <!-- (unnecessary)ANIMATIONS --!>
-  .sidebar a:hover {
- <!--  text-decoration: underline; --!>
- <!--  padding: var(--sidebar-padding); --!>
- <!--  padding: var(--sidebar-hover-padding); --!>
- <!--  transition: var(--transition-hover-duration); --!>
- <!--  display: block; --!>
-  }
-  .sidebar a {
-    padding: var(--sidebar-padding);
-    text-decoration: none;
-    font-size: var(--sidebar-font-size);
-    transition: var(--transition-duration);
-    display: block;
-    background-color: var(--color-white);
-  }
-}
-
-/* Articles */
-.articletableinfo {
-  padding: 20px;
-  background-color: var(--color-white);
-}
-
-.articletableinfo p {
-  margin-bottom: 10px;
-}
-
-.article-table {
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin: 25px 0;
+  font-size: 1em;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
 }
 
-.article-table th, .article-table td {
-  border: 1px solid var(--color-black);
-  padding: 8px;
+table thead tr {
+  background-color: var(--color-accent);
+  color: #ffffff;
   text-align: left;
 }
 
-.article-table th {
-  color: var(--color-links);
+table th, table td {
+  padding: 12px 15px;
+  border: 1px solid #d4cbbd;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #d4cbbd;
 }
 
 
-.article-table a {
-  color: var(--color-links);
+/* ==========================================================================
+   3. Reusable Components
+   ========================================================================== */
+
+/* --- Sidebar / Navigation --- */
+nav.sidebar {
+  padding: var(--spacing-unit);
+  text-align: center;
+  border-bottom: 1px solid #d4cbbd;
+  background-color: var(--color-card-bg);
 }
 
-.article-table a:hover {
-  text-decoration: underline;
-  color: var(--color-hover);
+nav.sidebar a {
+  text-decoration: none;
+  font-family: var(--font-heading);
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease;
+  display: inline-block;
 }
 
-.articlehead {
- margin: 10%;
- text-align: center;
- color: var(--color-black);
+nav.sidebar a:hover {
+  background-color: var(--color-bg);
 }
 
-.articlebody {
- margin: 10%;
- text-align: left;
- color: var(--color-black);
+/* --- Cards (for Projects, Gallery, etc.) --- */
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
-.articlebody .container {
- max-width: 800px;
- margin: 0 auto;
- padding: 20px;
+.card:hover {
+  box-shadow: 5px 5px 0px var(--color-border);
+  transform: translate(-2px, -2px);
 }
 
-.articlebody h1 {
- text-align: center;
- border-bottom: 2px solid var(--color-links);
- padding-bottom: 10px;
+.card h3 {
+  margin-top: 0;
 }
 
-.articlebody h2 {
- border-bottom: 1px solid var(--color-black);
- padding-bottom: 5px;
+.card img {
+  margin: 15px 0; /* Override default auto margins for card images */
 }
 
-.articlebody p {
- margin-bottom: 15px;
+/* --- Grid (for Projects, Gallery) --- */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-unit);
 }
 
-.articlebody ul {
- padding-left: 20px;
+/* --- Styled Table (for Article List) --- */
+.styled-table { /* A class for specific tables if needed */
+  /* Inherits base table styles, can be extended here */
 }
 
-.articlebody li {
- margin-bottom: 5px;
+/* ==========================================================================
+   4. Helper & Page-Specific Classes
+   ========================================================================== */
+.jp-title {
+  font-family: 'MS Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 }
 
-.articlebody table {
- width: 40%;
- background-color: var(--background-links);
- color: var(--color-black);
+.page-footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--color-subtle-text);
 }
 
-.articlebody th, td {
- padding: 8px;
- text-align: center;
- color: var(--color-black);
+/* ==========================================================================
+   5. Mobile Responsiveness
+   ========================================================================== */
+@media screen and (max-width: 600px) {
+  main.content,
+  div.content {
+    padding: var(--spacing-unit);
+  }
+
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.5em; }
+
+  nav.sidebar a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Stack grid items on mobile */
+  }
 }
 
-.articlebody th {
- background-color: var(--background-links);
- color: var(--color-black);
+/* ==========================================================================
+   6. Enhanced Project Page Styles (3-Column Layout)
+   ========================================================================== */
+
+.projects-grid {
+  display: grid;
+  gap: var(--spacing-unit);
+  
+  /* Mobile: 1 column */
+  grid-template-columns: 1fr;
 }
 
-.articlebody img {
-    transition: transform 0.3s ease;
-    border-radius: 10px;
+/* Small desktop: 2 columns */
+@media screen and (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.articlebody img:hover {
-    transform: scale(1.05);
+/* Medium desktop and up: 3 columns */
+@media screen and (min-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+
+/* --- ✨ NEW CROPPING CLASSES ✨ --- */
+.project-card.crop-top    .card-image-container img { object-position: center top; }
+.project-card.crop-center .card-image-container img { object-position: center center; }
+.project-card.crop-bottom .card-image-container img { object-position: center bottom; }
+
+/* (The rest of the styles are mostly the same, but are included here for completeness) */
+
+.project-card:hover .card-image-container img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: var(--spacing-unit);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.card-header h3 { margin: 0; }
+
+.stats-prominent {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0px var(--color-border);
+}
+
+.project-description {
+  flex-grow: 1;
+  padding-bottom: 15px;
+}
+
+.topics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-tag {
+  background-color: var(--color-bg);
+  border: 1px solid #d4cbbd;
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+  color: var(--color-subtle-text);
+}
+
+.card-visuals {
+  padding: 0 var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+}
+
+.card-visuals img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-footer {
+  margin-top: auto;
+  background-color: var(--color-card-bg);
+  border-top: 1px solid #d4cbbd;
+  padding: 10px var(--spacing-unit);
+  font-size: 12px;
+  color: var(--color-subtle-text);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+/* 7. NEW PINNED PROJECT STYLES ✨ --- */
+
+/* Style the pin icon itself */
+.pin-icon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: default; /* Make it not look clickable */
+  vertical-align: middle;
+}
+
+/* Style the card for a pinned project */
+.project-card.is-pinned {
+  /* A thicker, accented border makes it stand out */
+  border: 2px solid var(--color-accent);
+}
+
+/* Optional: Add a more prominent shadow to pinned cards to make them pop */
+.project-card.is-pinned:hover {
+  box-shadow: 7px 7px 0px var(--color-accent-hover);
+}
+
+/* --- ✨ NEW Fallback and Demo Button Styles ✨ --- */
+
+/* The placeholder for cards without images */
+.card-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* A subtle SVG background pattern */
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4cbbd' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.card-image-placeholder a {
+  text-decoration: none;
+  padding: 20px;
+}
+
+.card-image-placeholder span {
+  font-family: var(--font-heading);
+  font-size: 1.5em;
+  color: var(--color-text);
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* Make the card footer responsive */
+.card-footer {
+  align-items: center; /* Vertically align items */
+}
+
+.footer-stats {
+  display: flex;
+  gap: 15px;
+  flex-grow: 1; /* Allows it to take up available space */
+}
+
+/* Style for the new "Live Demo" button */
+.btn-demo {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 5px 12px;
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevent the button from wrapping */
+}
+
+.btn-demo:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* ==========================================================================
+   8. Compact Ricing Gallery Styles (with Enhancements)
+   ========================================================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Slightly wider items */
+  gap: 20px; /* Use your spacing unit */
+}
+
+/* --- Base Gallery Item --- */
+.gallery-item {
+  position: relative; /* Crucial for positioning the overlay */
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.gallery-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--color-border);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0;
+  transition: transform 0.4s ease, filter 0.4s ease; /* Add filter transition */
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.7); /* Darken the image on hover to make text readable */
+}
+
+/* --- Hover Info Overlay --- */
+.info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: var(--color-bg); /* Use your light background color for text */
+  
+  /* Hide by default */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none; /* Allows clicks to go through to the item */
+}
+
+.gallery-item:hover .info-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-overlay .info-title {
+  font-family: var(--font-heading);
+  font-size: 1.2em;
+  color: #fff; /* Pure white looks best on dark overlays */
+  margin: 0 0 5px 0;
+  line-height: 1.1;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.info-overlay .info-date {
+  font-family: var(--font-body);
+  font-size: 0.8em;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* --- Skeleton Loader --- */
+.gallery-item-skeleton {
+  background-color: var(--color-card-bg);
+  border: 1px solid #d4cbbd;
+  aspect-ratio: 16 / 10;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+/* --- Styled Error Message --- */
+.gallery-error {
+  grid-column: 1 / -1; /* Make it span the full grid width */
+  border: 1px dashed var(--color-accent);
+  background-color: var(--color-card-bg);
+  padding: var(--spacing-unit);
+  text-align: center;
+}
+.gallery-error h3 {
+  color: var(--color-accent);
+  margin-top: 0;
+}
+
+/* --- Lightbox Custom Styles --- */
+.basicLightbox--visible .basicLightbox__placeholder {
+    background: rgba(44, 44, 44, 0.85); /* Use your dark text color with transparency */
+    backdrop-filter: blur(5px);
+}
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.lightbox-caption {
+    color: var(--color-bg);
+    text-align: center;
+    max-width: 70ch;
+    margin: 20px auto 0 auto;
+}
+.lightbox-caption h3 {
+    color: #fff;
+    margin-bottom: 0.2em;
+}
+.lightbox-caption p {
+    color: var(--color-bg);
+    opacity: 0.9;
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   9. Homepage & Profile Styles
+   ========================================================================== */
+
+/* --- Profile Section Layout --- */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 2); /* 40px */
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  flex-wrap: wrap; /* Allows items to stack on smaller screens */
+  border-bottom: 1px solid #d4cbbd; /* Adds a nice separation */
+  padding-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.profile-pic-wrapper {
+  position: relative; /* Needed for positioning the stamp */
+  flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+.profile-pic-wrapper img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid var(--color-border);
+  box-shadow: 5px 5px 0px var(--color-border);
+  margin: 0; /* Override default image margin */
+}
+
+.profile-text {
+  flex-grow: 1;
+}
+
+.profile-text h1 {
+  text-align: left; /* Override centered h1 for this context */
+  border-bottom: none; /* Remove the full-width border */
+  margin-top: 0;
+}
+
+/* --- Japanese Subtitle --- */
+.jp-subtitle {
+  font-family: 'MS Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  font-weight: normal;
+  font-size: 0.7em;
+  color: var(--color-subtle-text);
+  vertical-align: middle;
+}
+
+/* --- "Hanko" Signature Stamp --- */
+.hanko-stamp {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'MS Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  font-size: 24px;
+  font-weight: bold;
+  /* A slight rotation makes it look more authentic */
+  transform: rotate(-10deg);
+  /* A "stamped" effect using borders and outlines */
+  border: 3px solid var(--color-bg);
+  outline: 2px solid var(--color-accent-hover);
+  cursor: default;
+  user-select: none; /* Make text non-selectable */
+}
+
+
+/* --- Interest Tags --- */
+.interests-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* Spacing between tags */
+  padding-top: 10px;
+}
+
+.interest-tag {
+  background-color: var(--color-card-bg);
+  border: 1px solid #d4cbbd;
+  padding: 6px 14px;
+  border-radius: var(--border-radius);
+  font-size: 0.9em;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+}
+
+.interest-tag:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* --- Responsive adjustments --- */
+@media screen and (max-width: 600px) {
+  .profile-container {
+    flex-direction: column; /* Stack vertically on mobile */
+    text-align: center;
+  }
+  .profile-text h1 {
+    text-align: center; /* Center the h1 on mobile */
+  }
+  .interests-container {
+    justify-content: center; /* Center the tags */
+  }
+}
+
+/* ==========================================================================
+   10. Article List Page Styles
+   ========================================================================== */
+
+.article-list {
+  margin-top: calc(var(--spacing-unit) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+/* This is the clickable link that wraps the card */
+.article-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* The main card container */
+.article-card {
+  display: flex;
+  gap: var(--spacing-unit);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden; /* Ensures image corners are rounded */
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.article-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--color-border);
+}
+
+/* --- Fixed-size Image Container --- */
+.article-image-container {
+  flex-shrink: 0; /* Prevents container from shrinking */
+  width: 150px; /* All images will be this width */
+  height: 120px; /* All images will be this height */
+  background-color: var(--color-bg);
+}
+
+.article-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is key: it scales and crops the image to fit */
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Placeholder style for articles without an image */
+.article-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4cbbd' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.article-image-placeholder .jp-title {
+  font-size: 3em;
+  color: var(--color-text);
+  opacity: 0.2;
+  user-select: none;
+}
+
+
+/* --- Text Content Styling --- */
+.article-content {
+  flex-grow: 1;
+  padding: var(--spacing-unit);
+  display: flex;
+  flex-direction: column;
+}
+
+.article-title {
+  font-family: var(--font-heading);
+  color: var(--color-accent); /* Make title stand out */
+  font-size: 1.5em;
+  margin: 0 0 10px 0;
+}
+
+.article-description {
+  margin: 0 0 15px 0;
+  flex-grow: 1; /* Pushes the date to the bottom */
+}
+
+.article-date {
+  font-family: var(--font-body);
+  font-size: 0.85em;
+  color: var(--color-subtle-text);
+  align-self: flex-start; /* Aligns to the left */
+}
+
+/* --- Mobile Responsiveness --- */
+@media screen and (max-width: 600px) {
+  .article-card {
+    flex-direction: column; /* Stack image on top of text */
+  }
+
+  .article-image-container {
+    width: 100%; /* Image container takes full width */
+    height: 150px; /* A bit taller for mobile aspect ratio */
+  }
+
+  .article-content {
+    padding: 15px; /* Adjust padding for mobile */
+  }
+}
+
+/* ==========================================================================
+   11. Single Article Page Styles
+   ========================================================================== */
+
+/* The main container for the article */
+.article-body {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-unit);
+}
+
+/* Styles for the centered header block */
+.article-header {
+  text-align: center;
+  margin: var(--spacing-unit) auto calc(var(--spacing-unit) * 3);
+}
+
+.article-header h1 {
+  border-bottom: none; /* Remove the global h1 border for a cleaner look */
+  margin-bottom: 0.2em;
+}
+
+.article-header p {
+  font-size: 1.2em;
+  color: var(--color-subtle-text);
+  margin-top: 0;
+}
+
+/* Styles for metadata (date, read time) */
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  color: var(--color-subtle-text);
+  margin-top: 20px;
+}
+
+/* This is the key for readable text: a centered column */
+.article-content {
+  max-width: 75ch; /* 'ch' is a unit relative to the width of the "0" character */
+  margin: 0 auto; /* This centers the content block */
+}
+
+/* Uniform styling for all images within the article content */
+.article-content img {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  padding: 5px;
+  border-radius: var(--border-radius);
+  box-shadow: 3px 3px 0px #d4cbbd; /* Softer shadow for inline content */
+}
+
+/* Creates the side-by-side image gallery */
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-unit);
+  margin: 20px 0;
+}
+
+/* Ensure gallery images take up their column space */
+.image-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center the table within the article content flow */
+.article-content .styled-table {
+  margin: 30px auto;
+  width: 80%;
+  min-width: 300px;
+}
+
+/* A stylish footer for the end of the article */
+.article-footer {
+  text-align: center;
+  margin: calc(var(--spacing-unit) * 3) auto 0;
+  max-width: 75ch;
+  padding-top: var(--spacing-unit);
+  border-top: 1px solid #d4cbbd;
+}
+
+.article-separator {
+  font-size: 1.5em;
+  color: var(--color-subtle-text);
+  margin-bottom: var(--spacing-unit);
+}
+
+.back-to-articles {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: 1px solid #d4cbbd;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.back-to-articles:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-accent);
 }
