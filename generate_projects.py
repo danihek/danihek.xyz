@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 PINNED_REPOS = [
     { "name": "hellwal", "url": "https://github.com/danihek/hellwal" },
     { "name": "oni-keyboard", "url": "https://github.com/danihek/oni-keyboard" },
-    { "name": "HellWM", "url": "https://github.com/HellSoftware/HellWM" },
+    { "name": "hellwm", "url": "https://github.com/danihek/hellwm" },
     { "name": "HellCast", "url": "https://github.com/danihek/HellCast" },
     { "name": "dotfiles", "url": "https://github.com/danihek/dotfiles" },
     { "name": "arch-dotfiles", "url": "https://github.com/danihek/arch-dotfiles" },
